@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+ <head>
+   <meta charset="utf-8">
+   <title>HTML 5 API</title>
+ </head>
+ <body>
+ <section id="main">
+   保存するKey : <input id="textkey" type="text" />
+   保存する値 : <input id="textdata" type="text" />
+   <button id="button" onclick="setsessionStorage()">保存</button>
+   <button id="button" onclick="removeStorage()">削除</button>
+   <button id="button" onclick="removeallStorage()">全て削除</button>
+   <table border="1">
+     <tr>
+       <th>キー</th><th>値</th>
+     </tr>
+     <tbody id="list">
+     </tbody>
+     </table>
+   </section>
+   
