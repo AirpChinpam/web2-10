@@ -67,5 +67,58 @@
        viewStorage();
       }
       </script>
+     if(!window.file) {
+       window.alert("本ブラウザではFile APIが使えません");
+     } else {
+      
+       document.getElementById("drop").addEventListener("drop", onDrop, false);
+     }
+    
+   function onDrop(event){
+     var files = event.dataTransfer.files;
+     var info  = document.getElementById("info");
+     var disp  = document.getElementById("disp");
+     disp.innerHTML ="";
+    
+    for(var i=0; i< files.length; i++){
+     var f = files[i];
+     info.innerHTML += " ファイル名 :" + f.name + "ファイルの型:" + f.size / 1000 + " KB " + "<br />";
+     
+     var reader  = new FileReader();
+     
+     if (!f.type.match('image.*') && !f.type.match('text.*')) {
+       alert("画像ファイルとテキストファイル以外は表示できません。");
+       continue;
+     }
+     
+     reader.onerror = function (evt) {
+       disp.innerHTML = "読み取り時にエラーが発生しました。";
+     }
+     
+     if (f.type.match('image.*')) {
+      
+      reader.onload = function (evt) {
+       var li = document.createElement('li');
+       var img = document.createElement('img');
+       img.src = evt.target.result;
+       li.appendChild(img);
+       li.innetHTML += "<br />";
+       disp.appendChild(li);
+      }
+      
+      reader.readAsDataURL(f);
+     }
+     reader.readAsText(f, 'utf-8');
+    }
+   }
+   event.preventDefault();
+  }
+
+   event.preventDefault();
+}
+function onDragOver(event){
+    event.preventDefault();
+}
+        </script>
       </body>
-      </html>
+     </html>
